@@ -5,11 +5,19 @@ import { usePathname } from "next/navigation"
 import { signOut, useSession } from "next-auth/react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Menu, X } from "lucide-react"
+import { useState } from "react"
 
 export function Navbar() {
   const pathname = usePathname()
   const { data: session } = useSession()
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   if (!session) return null
 
@@ -23,17 +31,29 @@ export function Navbar() {
   return (
     <header className="border-b">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4">
           <Link href="/" className="text-xl font-bold">
             Codeforces Scheduler
           </Link>
+
+          {/* Mobile Hamburger */}
+          <button
+            className="md:hidden"
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+          >
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+
+          {/* Desktop Nav */}
           <nav className="hidden md:flex gap-6">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 href={item.path}
                 className={`text-sm font-medium transition-colors ${
-                  pathname === item.path ? "text-primary" : "text-muted-foreground hover:text-primary"
+                  pathname === item.path
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-primary"
                 }`}
               >
                 {item.name}
@@ -41,6 +61,8 @@ export function Navbar() {
             ))}
           </nav>
         </div>
+
+        {/* Right Section */}
         <div className="flex items-center gap-4">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -55,11 +77,35 @@ export function Navbar() {
               <DropdownMenuItem asChild>
                 <Link href="/profile">Profile</Link>
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => signOut({ callbackUrl: "/login" })}>Sign out</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => signOut({ callbackUrl: "/login" })}>
+                Sign out
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <nav className="md:hidden px-4 pb-4">
+          <div className="flex flex-col gap-2">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                href={item.path}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`block text-sm font-medium transition-colors ${
+                  pathname === item.path
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-primary"
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
+        </nav>
+      )}
     </header>
   )
 }
