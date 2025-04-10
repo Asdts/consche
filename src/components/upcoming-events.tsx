@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
 import { useState, useEffect } from "react"
@@ -5,6 +6,7 @@ import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
+import Link from "next/link"
 
 interface ScheduledContest {
   id: string
@@ -45,6 +47,7 @@ export function UpcomingEvents({ userId }: UpcomingEventsProps) {
       setEvents(mappedEvents)
     } catch (error) {
       toast.error("Failed to fetch scheduled contests")
+      console.error("Error fetching scheduled contests:", error,userId)
     } finally {
       setLoading(false)
     }
@@ -69,6 +72,7 @@ export function UpcomingEvents({ userId }: UpcomingEventsProps) {
       toast.success("Contest removed from calendar")
     } catch (error) {
       toast.error("Failed to remove scheduled contest")
+      console.error("Error removing scheduled contest:", error)
     }
   }
 
@@ -108,7 +112,7 @@ export function UpcomingEvents({ userId }: UpcomingEventsProps) {
       <div className="text-center py-12">
         <p className="text-muted-foreground">No scheduled contests found</p>
         <Button className="mt-4" asChild>
-          <a href="/">Browse Contests</a>
+          <Link href="/">Browse Contests</Link>
         </Button>
       </div>
     )

@@ -1,6 +1,21 @@
 import type { NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 
+declare module "next-auth" {
+  interface Session {
+    accessToken?: string;
+    refreshToken?: string;
+  }
+}
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    accessToken?: string;
+    refreshToken?: string;
+  }
+}
+
+
 export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({

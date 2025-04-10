@@ -34,6 +34,7 @@ export function ContestList() {
       }
     } catch (error) {
       toast.error("Failed to fetch contests")
+      console.error("Error fetching contests:", error)
     } finally {
       setLoading(false)
     }

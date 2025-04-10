@@ -53,6 +53,7 @@ export function ScheduleContestDialog({ contest, open, onOpenChange }: ScheduleC
       onOpenChange(false)
     } catch (error) {
       toast.error("Failed to schedule contest")
+      console.error("Error scheduling contest:", error)
     } finally {
       setScheduling(false)
     }

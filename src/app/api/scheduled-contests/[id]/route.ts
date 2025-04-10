@@ -1,29 +1,37 @@
-import { NextResponse , NextRequest } from "next/server"
-import { getToken } from "next-auth/jwt"
+import { NextRequest, NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
 
 const GOOGLE_API = "https://www.googleapis.com/calendar/v3/calendars/primary/events";
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
-  const session = await getToken({ req})
+export async function DELETE(req: NextRequest) {
+  const token = await getToken({ req });
 
-  if (!session || !session.accessToken) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+  if (!token || !token.accessToken) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const url = new URL(req.url);
+  const id = url.pathname.split("/").pop(); // Gets the last segment of the path
+
+  if (!id) {
+    return NextResponse.json({ error: "Missing event ID" }, { status: 400 });
   }
 
   try {
-    const id = await params.id
-    const results = await fetch(`${GOOGLE_API}/${id}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${session.accessToken}`,
-          },
-        })
-    if(results.status !== 204) {
-      return NextResponse.json({ error: "Failed to delete scheduled contest" }, { status: 500 })
+    const res = await fetch(`${GOOGLE_API}/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token.accessToken}`,
+      },
+    });
+
+    if (!res.ok) {
+      return NextResponse.json({ error: "Failed to delete contest" }, { status: 500 });
     }
-    return NextResponse.json({ success: true })
+
+    return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Error deleting scheduled contest:", error)
-    return NextResponse.json({ error: "Failed to delete scheduled contest" }, { status: 500 })
+    console.error("Error deleting event:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }

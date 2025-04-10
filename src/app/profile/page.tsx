@@ -13,7 +13,7 @@ export default async function ProfilePage() {
   return (
     <div className="container mx-auto py-6">
       <h1 className="text-3xl font-bold mb-6">Your Profile</h1>
-      <UserProfile user={session.user} />
+      {session.user && <UserProfile user={session.user} />}
     </div>
   )
 }

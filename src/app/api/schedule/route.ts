@@ -49,6 +49,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       success: true,
       eventId: response.id,
+      contestId
     })
   } catch (error) {
     console.error("Error scheduling contest:", error)

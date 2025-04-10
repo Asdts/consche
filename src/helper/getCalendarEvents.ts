@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { JWT } from "next-auth/jwt";
 
 export async function getCalendarEvents(token: JWT | null) {
