@@ -10,7 +10,7 @@ export default async function Home() {
     return (
       <main className="flex min-h-screen items-center justify-center bg-muted px-4">
         <div className="w-full max-w-2xl rounded-2xl bg-white p-8 shadow-xl">
-          <h1 className="text-3xl font-bold mb-4 text-center text-primary">Welcome to Codeforces Contest Scheduler</h1>
+          <h1 className="text-3xl font-bold mb-4 text-center text-primary">Welcome to ConSche Codeforces Contest Scheduler</h1>
           <p className="text-muted-foreground text-center mb-6">
             Automatically track and schedule Codeforces contests to your Google Calendar.
           </p>
