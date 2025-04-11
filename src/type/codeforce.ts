@@ -4,6 +4,6 @@ export interface CodeforcesContest {
     phase: string;
     durationSeconds: number;
     startTimeSeconds: number;
-    relativeTimeSeconds: number;
+    endTimeSeconds: number;
     type: string;
   }

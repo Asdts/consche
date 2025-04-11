@@ -7,8 +7,16 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@
 import { Card, CardContent } from "@/components/ui/card";
 import { Loader2 } from "lucide-react";
 
+const divisionOptions = [
+  { label: "Any", value: "all" },
+  { label: "Div. 1", value: "Div. 1" },
+  { label: "Div. 2", value: "Div. 2" },
+  { label: "Div. 3", value: "Div. 3" },
+  { label: "Div. 4", value: "Div. 4" },
+];
+
 export default function AutoSchedule() {
-  const [division, setDivision] = useState("Any");
+  const [division, setDivision] = useState("all");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -17,6 +25,18 @@ export default function AutoSchedule() {
     setMessage("");
 
     try {
+      const updateRes = await fetch("/api/auth/user", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ autoSchedule: true, contestType: division }),
+      });
+      const user = await updateRes.json();
+
+      if (!updateRes.ok || !user) {
+        setMessage("❌ Failed to update user settings.");
+        return;
+      }
+
       const res = await fetch("/api/auto-schedule", {
         method: "POST",
         body: JSON.stringify({ preferredDiv: division }),
@@ -25,7 +45,11 @@ export default function AutoSchedule() {
 
       const data = await res.json();
       if (res.ok) {
-        setMessage(`✅ Scheduled ${data.calendarEventIds.length} contest(s).`);
+        if (data.calendarEventIds?.length === 0) {
+          setMessage("ℹ️ No matching contests found.");
+        } else {
+          setMessage(`✅ Scheduled ${data.calendarEventIds.length} contest(s).`);
+        }
       } else {
         setMessage(`❌ ${data.error || "Something went wrong."}`);
       }
@@ -48,8 +72,8 @@ export default function AutoSchedule() {
               <SelectValue placeholder="Select Division" />
             </SelectTrigger>
             <SelectContent>
-              {["Any", "Div. 1", "Div. 2", "Div. 3", "Div. 4"].map((div) => (
-                <SelectItem key={div} value={div}>{div}</SelectItem>
+              {divisionOptions.map((div) => (
+                <SelectItem key={div.value} value={div.value}>{div.label}</SelectItem>
               ))}
             </SelectContent>
           </Select>
@@ -59,7 +83,7 @@ export default function AutoSchedule() {
           {loading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Scheduling...</> : "Schedule Contests"}
         </Button>
 
-        {message && <p className="mt-4 text-sm text-center text-muted-foreground">{message}</p>}
+        {message && <p className={`mt-4 text-sm text-center ${message.includes("✅") ? "text-green-600" : "text-red-600"}`}>{message}</p>}
       </CardContent>
     </Card>
   );
