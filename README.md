@@ -1,37 +1,128 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 Codeforces Contest Scheduler
 
-## Getting Started
+A smart platform that allows users to **sign in with Google**, browse **Codeforces contests**, and **schedule contests directly to their Google Calendar** based on their preferred contest types (Div 2, Div 3, Div 4, or All). Upcoming contests are automatically fetched and managed, offering a seamless CP planning experience.
 
-First, run the development server:
+Built with ❤️ using **Next.js 14 App Router**, **NextAuth.js**, **Google Calendar API**, and **MongoDB**.
+
+---
+
+## 🚀 Features
+
+- 🔐 Google Authentication with NextAuth
+- 📅 Google Calendar integration
+- 🧠 Smart filtering of contests (Div 2, Div 3, etc.)
+- 🗓️ Auto-scheduling and managing of upcoming contests
+- 🧼 Clean UI with Tailwind CSS and ShadCN
+- 💾 MongoDB for storing user preferences and events
+- ✅ Fully responsive — works well on mobile and desktop
+
+---
+
+## 🧑‍💻 Getting Started
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/your-username/codeforces-calendar.git
+cd codeforces-calendar
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+# or
+yarn
+```
+
+### 3. Set up environment variables
+
+Create a `.env.local` file in the root directory and paste the following:
+
+```env
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_nextauth_secret_key
+GOOGLE_CALENDAR_SCOPE=https://www.googleapis.com/auth/calendar.events
+MONGODB_URI=your_mongodb_connection_string
+NEXT_URL=http://localhost:3000
+CRON_SECRET=your_custom_cron_secret
+```
+
+💡 You can generate a secure `NEXTAUTH_SECRET` using:
+```bash
+ openssl rand -base64 32
+  ```
+
+---
+
+### 4. Run the app
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧩 Project Structure
 
-## Learn More
+```bash
+.
+├── app/
+│   └── page.tsx               # Landing page
+│   └── upcoming/page.tsx      # Upcoming contests view
+├── components/
+│   └── upcoming-events.tsx    # Contest cards
+│   └── ui/                    # UI components (Button, Card, etc.)
+├── lib/
+│   └── auth-options.ts        # NextAuth config
+│   └── google.ts              # Google calendar logic
+├── pages/api/
+│   └── auth/                  # NextAuth API
+│   └── scheduled-contests     # API routes to handle contests
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🌐 Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Deploy easily with **Vercel**:
 
-## Deploy on Vercel
+[![Deploy with Vercel](https://consche.vercel.app/)]
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Set the same environment variables in the Vercel Dashboard.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# consche
+---
+
+## 🛠️ Tech Stack
+
+- **Next.js 14 (App Router)**
+- **NextAuth.js**
+- **Google Calendar API**
+- **Tailwind CSS + ShadCN UI**
+- **MongoDB with Mongoose**
+- **TypeScript**
+
+---
+
+## ✨ Future Enhancements
+
+- ✅ Notification system for upcoming contests
+- 🧠 Machine learning to recommend contests
+- 📊 Contest performance dashboard
+- 📱 PWA support for mobile usage
+
+---
+
+## 🤝 Contributing
+
+We welcome PRs and ideas! Fork this repo, create a branch, and open a PR with your enhancements.
+
+---
+
+## 📄 License
+
+MIT © theAsd
