@@ -10,9 +10,9 @@ export default async function Home() {
     return (
       <main className="flex min-h-screen items-center justify-center bg-muted px-4">
         <div className="w-full max-w-2xl rounded-2xl bg-white p-8 shadow-xl">
-          <h1 className="text-3xl font-bold mb-4 text-center text-primary">Welcome to Codeforces Contest Tracker</h1>
+          <h1 className="text-3xl font-bold mb-4 text-center text-primary">Welcome to Codeforces Contest Scheduler</h1>
           <p className="text-muted-foreground text-center mb-6">
-            Effortlessly track and schedule upcoming Codeforces contests to your Google Calendar.
+            Automatically track and schedule Codeforces contests to your Google Calendar.
           </p>
           <div className="flex justify-center mb-6">
             <Link
@@ -22,14 +22,20 @@ export default async function Home() {
               Log in with Google
             </Link>
           </div>
+
           <div className="border-t pt-4 text-sm text-muted-foreground space-y-2 text-center">
-            <p>✅ No personal data stored</p>
-            <p>🔒 Secure Google Calendar integration</p>
-            <p>📅 Only schedules contests you select</p>
+            <p>✅ No personal data is stored</p>
+            <p>🔒 We only request access to your Google Calendar to schedule contests</p>
+            <p>📅 You control what contests get added</p>
+            <p>🌐 Hosted securely on a verified domain</p>
             <Link href="/privacy" className="text-blue-500 hover:underline">
-              Privacy Policy
+              Read our Privacy Policy
             </Link>
           </div>
+
+          <p className="text-center text-sm text-muted-foreground mt-6">
+            Built with ❤️ by <strong>Abhishek Dubey</strong> — for competitive programmers, by a competitive programmer.
+          </p>
         </div>
       </main>
     )
