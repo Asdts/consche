@@ -13,8 +13,9 @@ export async function addEventsToCalendar(events: CalendarEvent, token: JWT | nu
           body: JSON.stringify(events),
         }
       );
-      console.log("token", token);
+      // console.log("token", token);
       const data = await response.json();
+      console.log("data", data);
   
     return data;
   }
