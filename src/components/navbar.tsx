@@ -23,7 +23,8 @@ export function Navbar() {
 
   const navItems = [
     { name: "Home", path: "/" },
-    { name: "Upcoming", path: "/upcoming" },
+    {name:"Roadmap", path:"/roadmap"},
+    { name: "Scheduled", path: "/upcoming" },
     { name: "auto schedule", path: "/auto-schedule" },
     { name: "Profile", path: "/profile" },
   ]
@@ -33,7 +34,7 @@ export function Navbar() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-4">
           <Link href="/" className="text-xl font-bold">
-            Codeforces Scheduler
+            xConSche
           </Link>
 
           {/* Mobile Hamburger */}

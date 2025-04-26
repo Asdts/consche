@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/lib/auth-options"
-import { ContestList } from "@/components/contest-list"
 import Link from "next/link"
+import ContestBox from "@/components/contest"
 
 export default async function Home() {
   const session = await getServerSession(authOptions)
@@ -43,8 +43,11 @@ export default async function Home() {
 
   return (
     <main className="container mx-auto px-4 py-10">
-      <h1 className="text-3xl font-bold mb-6 text-primary">Upcoming Codeforces Contests</h1>
-      <ContestList />
+      <h1 className="text-3xl font-bold mb-6 text-primary">Welcome back, {session.user.name}!</h1>
+      <p className="text-muted-foreground mb-6">
+        Here are the available platforms for contest scheduling:
+      </p>
+      <ContestBox />
     </main>
   )
 }

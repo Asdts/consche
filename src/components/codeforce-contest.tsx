@@ -11,7 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { ScheduleContestDialog } from "@/components/schedule-contest-dialog"
 import type { CodeforcesContest } from "@/lib/types"
 
-export function ContestList() {
+export function CodeForceList() {
   const [contests, setContests] = useState<CodeforcesContest[]>([])
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
