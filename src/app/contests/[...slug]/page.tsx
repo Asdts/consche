@@ -16,7 +16,10 @@ const contestMatch: Record<string , JSX.Element> = {
     // hackerearth: <ContestList />,
     // cses: <ContestList />,
 }
-export default async function ContestSlug({params}: { params: { slug: string[] } }) {
+interface ParamsType {
+    slug: string[]
+}
+export default async function ContestSlug({params}: { params: ParamsType }) {
     const { slug } = params;
     const contestPlatform = slug[0];
     if (!contestMatch[contestPlatform]) {
