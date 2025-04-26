@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { CodeForceList } from "@/components/codeforce-contest";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
@@ -16,11 +17,9 @@ const contestMatch: Record<string , JSX.Element> = {
     // hackerearth: <ContestList />,
     // cses: <ContestList />,
 }
-interface ParamsType {
-    slug: string[]
-}
-export default async function ContestSlug({params}: { params: ParamsType }) {
-    const { slug } = params;
+
+export default async function ContestSlug({params} : any): Promise<JSX.Element> {
+    const { slug } = await params;
     const contestPlatform = slug[0];
     if (!contestMatch[contestPlatform]) {
         return(
