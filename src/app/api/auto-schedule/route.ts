@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextRequest, NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
 import { addEventsToCalendar } from "@/helper/addEventToCalender";
 import { fetchUpcomingContests } from "@/helper/codeforceFetch";
+import { getServerSession } from "next-auth/next";
+import authOptions from "../auth/[...nextauth]/option";
 
 export async function POST(req: NextRequest) {
-  const token = await getToken({ req });
+  const token = await getServerSession(authOptions);
   if (!token || !token.accessToken) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -56,7 +57,7 @@ export async function POST(req: NextRequest) {
     // console.log("events", events);
 
     const responses = await Promise.all(
-      events.map((event: any) => addEventsToCalendar(event, token))
+      events.map((event: any) => addEventsToCalendar(event, token.accessToken))
     );
 
     const calendarEventIds = responses.map((response: any) => response.id);
