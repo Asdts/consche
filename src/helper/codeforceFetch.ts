@@ -1,4 +1,4 @@
-import type { CodeforcesContest } from "@/type/codeforce";
+import type { CodeforcesContest } from "@/types/codeforce";
 
 export async function fetchUpcomingContests(): Promise<CodeforcesContest[]> {
     const res = await fetch('https://codeforces.com/api/contest.list?gym=false');

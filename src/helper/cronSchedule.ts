@@ -1,7 +1,7 @@
 import { fetchUpcomingContests } from "./codeforceFetch";
 import { addEventsToCalendar } from "@/helper/addEventToCalender";
 // import { filterContestsByDivision } from "./filter";
-import type { CalendarEvent } from "@/type/calender";
+import type { CalendarEvent } from "@/types/calender";
 // import { use } from "react";
 
 const CRON_SECRET = process.env.CRON_SECRET;

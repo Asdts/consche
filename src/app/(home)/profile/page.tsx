@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation"
 import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/lib/auth-options"
+import authOptions from "../../api/auth/[...nextauth]/option"
 import { UserProfile } from "@/components/user-profile"
 
 export default async function ProfilePage() {

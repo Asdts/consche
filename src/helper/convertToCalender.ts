@@ -1,5 +1,5 @@
-import type { CalendarEvent } from '@/type/calender';
-import type { CodeforcesContest } from '@/type/codeforce';
+import type { CalendarEvent } from '@/types/calender';
+import type { CodeforcesContest } from '@/types/codeforce';
 
 export function toCalendarEvent(contest: CodeforcesContest): CalendarEvent {
   const start = new Date(contest.startTimeSeconds * 1000);

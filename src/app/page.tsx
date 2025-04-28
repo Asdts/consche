@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/lib/auth-options"
+import authOptions from "./api/auth/[...nextauth]/option"
 import Link from "next/link"
 import ContestBox from "@/components/contest"
 

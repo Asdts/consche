@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server"
-import { getToken } from "next-auth/jwt"
-import type { CalendarEvent } from "@/type/calender"
+import type { CalendarEvent } from "@/types/calender"
 import { addEventsToCalendar } from "@/helper/addEventToCalender"
+import { getServerSession } from "next-auth/next"
+import authOptions from "@/app/api/auth/[...nextauth]/option"
 
 export async function POST(req: NextRequest) {
-  const session = await getToken({ req });
+  const session = await getServerSession(authOptions)
 
   if (!session || !session.accessToken) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
@@ -39,7 +40,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Create Google Calendar event
-    const response = await addEventsToCalendar(event, session)
+    const response = await addEventsToCalendar(event, session.accessToken)
 
     // const calendarEvent = await response.json()
 

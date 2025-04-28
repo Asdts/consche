@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { JWT } from "next-auth/jwt";
 
-export async function getCalendarEvents(token: JWT | null) {
-  if (!token || !token.accessToken) return null;
+export async function getCalendarEvents(accessToken: string | undefined | null) {
+  if (!accessToken) return null;
 
   const res = await fetch("https://www.googleapis.com/calendar/v3/calendars/primary/events", {
     headers: {
-      Authorization: `Bearer ${token.accessToken}`,
+      Authorization: `Bearer ${accessToken}`,
     },
   });
 

@@ -1,4 +1,4 @@
-import type { CodeforcesContest } from '@/type/codeforce';
+import type { CodeforcesContest } from '@/types/codeforce';
 
 export function filterContestsByDivision(
     contests: CodeforcesContest[],

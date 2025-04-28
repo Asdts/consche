@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation"
 import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/lib/auth-options"
+import authOptions from "@/app/api/auth/[...nextauth]/option"
 import { UpcomingEvents } from "@/components/upcoming-events"
 
 export default async function UpcomingPage() {
