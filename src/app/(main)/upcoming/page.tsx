@@ -11,7 +11,7 @@ export default async function UpcomingPage() {
   }
 
   return (
-    <div className="container mx-auto py-6">
+    <div className="flex flex-col h-full py-6 bg-gradient-to-b from-[#a95007] to-[#d19b5d]">
       <h1 className="text-3xl font-bold mb-6">Upcoming Scheduled Contests</h1>
       { session.user && <UpcomingEvents userId={session.user.email || ""} />}
     </div>

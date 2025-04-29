@@ -88,9 +88,9 @@ export function UpcomingEvents({ userId }: UpcomingEventsProps) {
 
   if (loading) {
     return (
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 bg-transparent">
         {[1, 2, 3].map((i) => (
-          <Card key={`skeleton-${i}`}>
+          <Card key={`skeleton-${i}`} className="bg-transparent">
             <CardHeader>
               <Skeleton className="h-6 w-full" />
             </CardHeader>
@@ -109,7 +109,7 @@ export function UpcomingEvents({ userId }: UpcomingEventsProps) {
 
   if (events.length === 0) {
     return (
-      <div className="text-center py-12">
+      <div className="text-center py-12 bg-transparent">
         <p className="text-muted-foreground">No scheduled contests found</p>
         <Button className="mt-4" asChild>
           <Link href="/">Browse Contests</Link>
@@ -119,9 +119,9 @@ export function UpcomingEvents({ userId }: UpcomingEventsProps) {
   }
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 bg-transparent">
       {events.map((event) => (
-        <Card key={event.id}>
+        <Card key={event.id} className="bg-transparent">
           <CardHeader>
             <CardTitle className="line-clamp-2">{event.name}</CardTitle>
           </CardHeader>
@@ -135,8 +135,8 @@ export function UpcomingEvents({ userId }: UpcomingEventsProps) {
               <div>{formatDuration(event.duration)}</div>
             </div>
           </CardContent>
-          <CardFooter>
-            <Button variant="outline" className="w-full" onClick={() => handleRemove(event.id)}>
+          <CardFooter >
+            <Button variant="outline" className="hover:bg-red-600 bg-violet-600 w-full" onClick={() => handleRemove(event.id)}>
               Remove from Calendar
             </Button>
           </CardFooter>

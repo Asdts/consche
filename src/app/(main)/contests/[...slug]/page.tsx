@@ -23,7 +23,7 @@ export default async function ContestSlug({params} : any): Promise<JSX.Element> 
     const contestPlatform = slug[0];
     if (!contestMatch[contestPlatform]) {
         return(
-            <main className="container mx-auto flex h-screen items-center justify-center">
+            <main className="container mx-auto flex h-screen items-center justify-center bg-gradient-to-b from-[#a95007] to-[#d19b5d]">
             <Card className="w-full max-w-2xl p-6">
                 <h1 className="text-2xl font-bold">Platform not available</h1>
                 <p className="mt-4 text-gray-600">
@@ -49,7 +49,7 @@ export default async function ContestSlug({params} : any): Promise<JSX.Element> 
         )
     }
     return (
-        <div className="container mx-auto px-4 py-10">
+        <div className="flex flex-col mx-auto px-4 py-10 bg-gradient-to-b from-[#f67912] to-[#0c5631]">
             <h1 className="text-3xl font-bold mb-6 text-primary">{contestPlatform}</h1>
             <div className="grid grid-cols-1 gap-4">
                 {contestMatch[contestPlatform]}

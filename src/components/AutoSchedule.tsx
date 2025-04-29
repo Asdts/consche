@@ -62,7 +62,7 @@ export default function AutoSchedule() {
   };
 
   return (
-    <Card className="w-full max-w-md mx-auto mt-10 p-6">
+    <Card className="w-full max-w-md mx-auto mt-10 p-6 bg-transparent">
       <CardContent>
         <h2 className="text-xl font-semibold mb-4 text-center">Auto Schedule Codeforces Contests</h2>
 

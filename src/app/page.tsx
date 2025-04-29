@@ -1,47 +1,23 @@
 import { getServerSession } from "next-auth/next"
 import authOptions from "./api/auth/[...nextauth]/option"
-import Link from "next/link"
 import ContestBox from "@/components/contest"
+import Hero from "@/components/homepage/hero"
 
 export default async function Home() {
   const session = await getServerSession(authOptions)
 
   if (!session) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-muted px-4">
-        <div className="w-full max-w-2xl rounded-2xl bg-white p-8 shadow-xl">
-          <h1 className="text-3xl font-bold mb-4 text-center text-primary">Welcome to ConSche Codeforces Contest Scheduler</h1>
-          <p className="text-muted-foreground text-center mb-6">
-            Automatically track and schedule Codeforces contests to your Google Calendar.
-          </p>
-          <div className="flex justify-center mb-6">
-            <Link
-              href="/login"
-              className="inline-block rounded-lg bg-blue-600 px-6 py-2 text-white font-semibold hover:bg-blue-700 transition-colors"
-            >
-              Log in with Google
-            </Link>
-          </div>
-
-          <div className="border-t pt-4 text-sm text-muted-foreground space-y-2 text-center">
-            <p>✅ No personal data is stored</p>
-            <p>🔒 We only request access to your Google Calendar to schedule contests</p>
-            <p>📅 You control what contests get added</p>
-            <p>🌐 Hosted securely on a verified domain</p>
-            <Link href="/privacy" className="text-blue-500 hover:underline">
-              Read our Privacy Policy
-            </Link>
-          </div>
-
-          <p className="text-center text-sm text-muted-foreground mt-6">
-            Built with ❤️ by <strong>Abhishek Dubey</strong> — for competitive programmers, by a competitive programmer.
-          </p>
-        </div>
+      <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+        <Hero/>
       </main>
     )
   }
 
   return (
+
+    // <main className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#a95007] to-[#d19b5d]">
       <ContestBox />
+      // </main>
   )
 }

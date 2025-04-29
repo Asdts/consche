@@ -49,7 +49,7 @@ export default function ContestBox() {
     const router = useRouter();
 
     return (
-        <main className="container mx-auto px-4 py-10">
+        <main className="flex flex-col mx-auto px-4 py-10 bg-gradient-to-b  from-[#a95007] to-[#2a7a0a]">
             <h1 className="text-3xl font-semibold mb-8 text-primary text-center">
                 Welcome back, {session?.user?.name || "User"}!
             </h1>
@@ -58,7 +58,7 @@ export default function ContestBox() {
             </p>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {Contests.map((contest) => (
-                    <Card key={contest.title} className="w-full max-w-xs shadow-lg hover:shadow-xl transition duration-300 ease-in-out">
+                    <Card key={contest.title} className="w-full max-w-xs shadow-lg hover:shadow-xl transition duration-300 ease-in-out bg-gradient-to-b from-[#d19b5d] to-[#d19b5d]">
                         <CardHeader className="text-center bg-gray-100 py-4 rounded-t-lg">
                             <CardTitle className="text-xl font-semibold text-primary">{contest.title}</CardTitle>
                         </CardHeader>

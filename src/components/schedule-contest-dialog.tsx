@@ -65,7 +65,7 @@ export function ScheduleContestDialog({ contest, open, onOpenChange }: ScheduleC
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
+      <DialogContent className="bg-gradient-to-b from-[#a95007] to-[#d19b5d]">
         <DialogHeader>
           <DialogTitle>Schedule Contest</DialogTitle>
           <DialogDescription>Add this contest to your Google Calendar</DialogDescription>

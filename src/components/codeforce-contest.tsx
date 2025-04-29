@@ -76,8 +76,8 @@ export function CodeForceList() {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <div className="w-48">
+      <div className="flex justify-between items-center bg-transparent">
+        <div className="w-48 bg-transparent">
           <Select value={division} onValueChange={setDivision}>
             <SelectTrigger>
               <SelectValue placeholder="Filter by division" />
@@ -94,9 +94,9 @@ export function CodeForceList() {
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 bg-transparent">
         {contests.map((contest) => (
-          <Card key={contest.id}>
+          <Card key={contest.id} className="bg-transparent">
             <CardHeader>
               <CardTitle className="line-clamp-2">{contest.name}</CardTitle>
               <div className="text-sm text-muted-foreground">{getDivisionFromName(contest.name)}</div>
